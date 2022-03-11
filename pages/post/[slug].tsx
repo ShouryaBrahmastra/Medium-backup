@@ -4,7 +4,7 @@ import PortableText from 'react-portable-text';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 
-const Post = ({ post }) => {
+const Post = ({post} : { post: any}) => {
   const [submitted, setSubmitted] = useState(false);
 
   const {
@@ -13,7 +13,7 @@ const Post = ({ post }) => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = ({data} : { data: any}) => {
     fetch('/api/createComment', {
       method: 'POST',
       body: JSON.stringify(data),
@@ -55,7 +55,7 @@ const Post = ({ post }) => {
             projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}
             content={post.body}
             serializers={{
-              h1: (props) => (
+              h1: ({props} : { props: any}) => (
                 <h1
                   className='text-2xl text-green-800 font-bold my-5'
                   {...props}
@@ -67,7 +67,7 @@ const Post = ({ post }) => {
                   {...props}
                 />
               ),
-              li: ({ children }) => (
+              li: ({children} : { children: any} ) => (
                 <li className='ml-4 list-disc text-black font-bold'>
                   {children}
                 </li>
